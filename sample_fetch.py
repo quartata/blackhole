@@ -13,7 +13,7 @@ if os.path.isfile("blacklist.p"):
     with open("blacklist.p", "rb") as pickle_file:
         blacklist = pickle.load(pickle_file)
 else:
-    blacklist = Blacklist(0, set())
+    blacklist = Blacklist(-1, set())
 
 data = requests.get("http://localhost/blackhole/cgi-bin/fetch.py", params={"rev": blacklist.rev}).json()
 
