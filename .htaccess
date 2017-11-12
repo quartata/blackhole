@@ -1,0 +1,9 @@
+<Files db.sqlite3>
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files schema.py>
+Order Allow,Deny
+Deny from all
+</Files>
