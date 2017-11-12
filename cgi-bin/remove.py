@@ -11,11 +11,9 @@ params = cgi.FieldStorage()
 if "keyword" not in params:
     print("Content-Type: text/plain\n")
 else:
-    with sqlite3.connect("../db.sqlite3") as connection:
-        db = connection.cursor()
-
+    with sqlite3.connect("../db.sqlite3") as db:
         db.execute("insert into blacklist (keyword, removal) values (?, 1);", (params.getvalue("keyword"),))
-        connection.commit()
+        db.commit()
 
         print("Content-Type: text/plain\n")
         print("success")
