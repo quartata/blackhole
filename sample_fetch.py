@@ -15,7 +15,8 @@ if os.path.isfile("blacklist.p"):
 else:
     blacklist = Blacklist(-1, set())
 
-data = requests.get("http://localhost/blackhole/cgi-bin/fetch.py", params={"rev": blacklist.rev}).json()
+data = requests.get("http://localhost/blackhole/cgi-bin/fetch.py", 
+                    params={"rev": blacklist.rev, "type": "keyword"}).json()
 
 blacklist.rev = data["rev"]
 for change in data["changes"]:
@@ -24,5 +25,6 @@ for change in data["changes"]:
     else:
         blacklist.blacklist.add(change[0])
 
+print(blacklist.blacklist)
 with open("blacklist.p", "wb") as save:
     pickle.dump(blacklist, save)
