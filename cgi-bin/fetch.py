@@ -4,6 +4,7 @@ import cgi
 import json
 import sqlite3
 
+print("Access-Control-Allow-Origin: *")
 params = cgi.FieldStorage()
 
 if "rev" not in params or "type" not in params:
